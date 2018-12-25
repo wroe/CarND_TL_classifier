@@ -25,10 +25,10 @@ def augment(img):
         img = cv2.flip( img, 1 )
 
     # Crop
-    top = round(random.uniform(0, .05*h))
-    bottom = round(random.uniform(.95*h, h))
-    left = round(random.uniform(0, .1*w))
-    right = round(random.uniform(.9*w, w))
+    top = int(random.uniform(0, .05*h))
+    bottom = int(random.uniform(.95*h, h))
+    left = int(random.uniform(0, .1*w))
+    right = int(random.uniform(.9*w, w))
     #print(str(top) +' '+ str(bottom) +' '+ str(left) +' '+ str(right))
     img = img[top:bottom, left:right]
     img = cv2.resize(img, (w, h))
