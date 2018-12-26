@@ -17,7 +17,13 @@ from augment import *
 nEpochs = 15
 batch_size = 4
 
-MODEL_FILE_NAME = './sim_model.h5'
+sim = False
+if sim:
+    MODEL_FILE_NAME = './sim_model.h5'
+    trainfile = 'sim_train.csv'
+else:
+    MODEL_FILE_NAME = './site_model.h5'
+    trainfile = 'site_train.csv'
 
 
 # generator function to return images batchwise
@@ -50,7 +56,7 @@ def generator(samples, batch_size, apply_augment=True):
 
 if __name__ == "__main__":
 
-	data_set = pd.read_csv(os.path.join('./sim_train.csv'))
+	data_set = pd.read_csv(os.path.join('./' + trainfile))
 
 	# Split data into random training and validation sets
 	x_train, x_valid = model_selection.train_test_split(data_set, test_size=.2)
