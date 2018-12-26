@@ -17,20 +17,23 @@ from augment import *
 nEpochs = 15
 batch_size = 4
 
-sim = False
+sim = True
 if sim:
     MODEL_FILE_NAME = './sim_model.h5'
     trainfile = 'sim_train.csv'
+	colormap = {'green':0, 'red':1, 'yellow':2, 'not_light':3}
+    nClasses = 4
 else:
     MODEL_FILE_NAME = './site_model.h5'
     trainfile = 'site_train.csv'
+    colormap = {'not_red':0, 'red':1, 'not_light', 3}
+    nClasses = 3
 
 
 # generator function to return images batchwise
 def generator(samples, batch_size, apply_augment=True):
 	n_samples, dummy = samples.shape
-	colormap = dict()
-	colormap = {'green':0, 'red':1, 'yellow':2, 'not_light':3}
+
 	while True:
 		samples = sklearn.utils.shuffle(samples)
 		for offset in range(0, n_samples-batch_size, batch_size):
@@ -50,7 +53,7 @@ def generator(samples, batch_size, apply_augment=True):
 
 			x_train = np.array(images)
 			y_train = np.array(colors)
-			y_train = to_categorical(y_train, num_classes=4)
+			y_train = to_categorical(y_train, num_classes=nClasses)
 
 			yield sklearn.utils.shuffle(x_train, y_train)
 
