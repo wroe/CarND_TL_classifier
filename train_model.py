@@ -19,15 +19,15 @@ batch_size = 4
 
 sim = True
 if sim:
-    MODEL_FILE_NAME = './sim_model.h5'
-    trainfile = 'sim_train.csv'
+	MODEL_FILE_NAME = './sim_model.h5'
+	trainfile = 'sim_train.csv'
 	colormap = {'green':0, 'red':1, 'yellow':2, 'not_light':3}
-    nClasses = 4
+	nClasses = 4
 else:
-    MODEL_FILE_NAME = './site_model.h5'
-    trainfile = 'site_train.csv'
-    colormap = {'not_red':0, 'red':1, 'not_light', 3}
-    nClasses = 3
+	MODEL_FILE_NAME = './site_model.h5'
+	trainfile = 'site_train.csv'
+	colormap = {'not_red':0, 'red':1, 'not_light', 3}
+	nClasses = 3
 
 
 # generator function to return images batchwise
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 		epochs=nEpochs, validation_data=validation_gen,
 		validation_steps=len(x_valid)//batch_size,
 		verbose=1, callbacks=callbacks_list
-    )
+	)
 
 	# Destroying the current TF graph to avoid clutter from old models / layers
 	K.clear_session()
